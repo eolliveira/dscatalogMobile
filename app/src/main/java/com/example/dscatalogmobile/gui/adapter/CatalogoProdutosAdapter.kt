@@ -23,10 +23,7 @@ class CatalogoProdutosAdapter(
 
            val preco = itemView.findViewById<TextView>(R.id.activity_catalogo_produtos_preco)
            preco.text = produto.price.toString()
-
        }
-
-
    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
