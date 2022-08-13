@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">dscatalogMobile</string>
+    <string name="categoria">Categoria</string>
+    <string name="nome_do_produto">Nome do Produto</string>
+    <string name="preco">Preço</string>
+    <string name="descricao">Descrição</string>
+    <string name="Descrição">Descrição</string>
 </resources>

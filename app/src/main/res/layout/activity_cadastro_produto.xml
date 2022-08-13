@@ -20,7 +20,7 @@
             android:id="@+id/activity_formulario_produto_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome"
+            android:hint="@string/nome_do_produto"
             android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -39,40 +39,74 @@
             android:id="@+id/activity_formulario_produto_descricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descrição"
-            android:inputType="text" />
+            android:hint="@string/preco"
+            android:inputType="numberDecimal" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/menu"
+        android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/label"
+        android:hint="@string/categoria"
         app:layout_constraintEnd_toEndOf="@+id/formulario_produto_textinputlayout_descricao"
-        app:layout_constraintStart_toStartOf="@+id/formulario_produto_textinputlayout_descricao"
+        app:layout_constraintStart_toStartOf="@+id/formulario_produto_textinputlayout_nome"
         app:layout_constraintTop_toBottomOf="@+id/formulario_produto_textinputlayout_descricao">
 
         <AutoCompleteTextView
             android:id="@+id/campo_teste"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/formulario_produto_textinputlayout_descric"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_formulario_produto_descric"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="@string/Descrição"
+            android:inputType="text" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <Button
+        android:id="@+id/activity_cadastro_produto_btn_cancelar"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:text="CANCELAR"
 
+        android:textColor="@color/red"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/formulario_produto_textinputlayout_nome"
+        app:strokeColor="@color/red"
+        app:strokeWidth="2dp" />
 
-
-
-
+    <Button
+        android:id="@+id/activity_cadastro_produto_btn_salvar"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:text="SALVAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/formulario_produto_textinputlayout_nome" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
