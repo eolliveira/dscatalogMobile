@@ -7,7 +7,7 @@
     tools:context=".gui.activity.CadastroProdutoActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formulario_produto_textinputlayout_nome"
+        android:id="@+id/activity_cadastro_produto_nome"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_formulario_produto_nome"
+            android:id="@+id/activity_cadastro_produto_edt_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nome_do_produto"
@@ -26,17 +26,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formulario_produto_textinputlayout_descricao"
+        android:id="@+id/activity_cadastro_produto_preco"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/formulario_produto_textinputlayout_nome">
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_produto_nome">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_formulario_produto_descricao"
+            android:id="@+id/activity_cadastro_produto_edt_preco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/preco"
@@ -46,26 +46,27 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/activity_cadastro_produto_categoria"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/categoria"
-        app:layout_constraintEnd_toEndOf="@+id/formulario_produto_textinputlayout_descricao"
-        app:layout_constraintStart_toStartOf="@+id/formulario_produto_textinputlayout_nome"
-        app:layout_constraintTop_toBottomOf="@+id/formulario_produto_textinputlayout_descricao">
+        app:layout_constraintEnd_toEndOf="@+id/activity_cadastro_produto_preco"
+        app:layout_constraintStart_toStartOf="@+id/activity_cadastro_produto_nome"
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastro_produto_preco">
 
         <AutoCompleteTextView
-            android:id="@+id/campo_teste"
+            android:id="@+id/activity_cadastro_produto_edt_categoria"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formulario_produto_textinputlayout_descric"
+        android:id="@+id/activity_cadastro_produto_descricao"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -74,10 +75,10 @@
         app:counterMaxLength="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastro_produto_categoria">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_formulario_produto_descric"
+            android:id="@+id/activity_cadastro_produto_edt_descricao"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:hint="@string/Descrição"
@@ -95,7 +96,7 @@
         android:textColor="@color/red"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/formulario_produto_textinputlayout_nome"
+        app:layout_constraintStart_toStartOf="@+id/activity_cadastro_produto_nome"
         app:strokeColor="@color/red"
         app:strokeWidth="2dp" />
 
@@ -106,7 +107,22 @@
         android:layout_marginBottom="16dp"
         android:text="SALVAR"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/formulario_produto_textinputlayout_nome" />
+        app:layout_constraintEnd_toEndOf="@+id/activity_cadastro_produto_nome" />
+
+    <Button
+        android:id="@+id/activity_cadastro_produto_btn_adicionar_img"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:text="ADICIONAR IMAGEM"
+        app:backgroundTint="#9E9E9E"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_cadastro_produto_nome"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/activity_cadastro_produto_nome"
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastro_produto_descricao"
+        app:layout_constraintVertical_bias="0.09" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

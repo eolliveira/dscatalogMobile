@@ -4,10 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.dscatalogmobile.R
 import com.example.dscatalogmobile.model.Produto
+import com.example.dscatalogmobile.utils.FormatCurrency
+import java.text.NumberFormat
+import java.util.*
 
 class CatalogoProdutosAdapter(
     val context: Context,
@@ -22,7 +27,10 @@ class CatalogoProdutosAdapter(
            nome.text = produto.name
 
            val preco = itemView.findViewById<TextView>(R.id.activity_catalogo_produtos_preco)
-           preco.text = produto.price.toString()
+           preco.text = FormatCurrency.real(produto.price)
+
+           val image = itemView.findViewById<ImageView>(R.id.activity_catalogo_produtos_img)
+           image.load(produto.imgUrl)
        }
    }
 

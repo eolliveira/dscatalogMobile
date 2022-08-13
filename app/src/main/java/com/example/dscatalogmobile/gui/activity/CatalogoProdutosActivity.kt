@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dscatalogmobile.R
 import com.example.dscatalogmobile.Retrofit.ApiClient
@@ -42,7 +43,7 @@ class CatalogoProdutosActivity : BaseActivity() {
         )
         recyclerView.adapter = adapter
 
-        recyclerView.layoutManager = GridLayoutManager(this, 1 )
+        recyclerView.layoutManager = LinearLayoutManager(this )
 
         scope.launch {
             val service = ApiClient().produtoService

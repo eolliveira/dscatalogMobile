@@ -2,14 +2,13 @@
 
 <com.google.android.material.card.MaterialCardView
     android:id="@+id/card"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
-    android:layout_margin="20dp"
+    android:layout_margin="8dp"
     xmlns:tools="http://schemas.android.com/tools"
     layout_height="match_parent"
     layout_width="match_parent"
-    android:clickable="true"
     app:cardElevation="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -17,77 +16,51 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="194dp"
+            android:id="@+id/activity_catalogo_produtos_img"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_launcher_background" />
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="horizontal">
-
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/activity_catalogo_produtos_preco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/open_sans"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="#407BFF"
-            android:textSize="30dp"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:textSize="25dp"
+            app:layout_constraintStart_toEndOf="@+id/list_item_tv"
+            app:layout_constraintTop_toBottomOf="@+id/activity_catalogo_produtos_nome"
             tools:text="254,44" />
 
         <TextView
             android:id="@+id/activity_catalogo_produtos_nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
             android:text="-"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="#263238"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/activity_catalogo_produtos_img"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Titulo" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/list_item_tv"
             android:layout_width="28dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/open_sans"
             android:text="R$"
             android:textColor="#9E9E9E"

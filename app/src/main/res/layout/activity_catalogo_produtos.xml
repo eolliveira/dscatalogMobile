@@ -28,7 +28,8 @@
         app:backgroundTint="#407BFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_fab_add" />
+        app:rippleColor="#EFE5E5"
+        app:srcCompat="@drawable/ic_add_fab" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
