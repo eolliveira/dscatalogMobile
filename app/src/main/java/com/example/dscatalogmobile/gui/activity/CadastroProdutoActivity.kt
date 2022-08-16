@@ -6,10 +6,8 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
+import coil.load
 import com.example.dscatalogmobile.R
 import com.example.dscatalogmobile.Retrofit.ApiClient
 import com.example.dscatalogmobile.model.Categoria
@@ -36,6 +34,10 @@ class CadastroProdutoActivity : BaseActivity() {
     private val botao_salvar: Button by lazy { findViewById(R.id.activity_cadastro_produto_btn_salvar) }
     private val botao_cancelar: Button by lazy { findViewById(R.id.activity_cadastro_produto_btn_cancelar) }
 
+    private val image_carregada: ImageView by lazy { findViewById(R.id.activity_cadastro_produto_imagem_carregada) }
+    private val campo_url_img: EditText by lazy { findViewById(R.id.activity_cadastro_produto_carrega_img_dialog_edt) }
+    //private val botao_carregar: Button by lazy { findViewById(R.id.activity_cadastro_produto_btn_carregar) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro_produto)
@@ -44,37 +46,41 @@ class CadastroProdutoActivity : BaseActivity() {
         botao_salvar.setOnClickListener(this)
         botao_adicionar_img.setOnClickListener(this)
 
+        //botao_carregar.setOnClickListener(this)
+
         setTitle("Cadastro de Produto")
 
-
         scope.launch {
-            val service = ApiClient().categoriaService
-            val call = service.findAll()
-            val response = call!!.execute()
-            if (response.isSuccessful) {
-                var list = response.body()?.getContent()?.map { p -> Categoria(p) }
+            try {
+                val service = ApiClient().categoriaService
+                val call = service.findAll()
+                val response = call!!.execute()
+                if (response.isSuccessful) {
+                    var list = response.body()?.getContent()?.map { p -> Categoria(p) }
 
-                listaCategorias.clear()
-                if (list != null) {
-                    listaCategorias.addAll(list)
+                    listaCategorias.clear()
+                    if (list != null) {
+                        listaCategorias.addAll(list)
+                    }
+
+                    withContext(Dispatchers.Main) {
+                        val dCaategoria =
+                            findViewById<AutoCompleteTextView>(R.id.activity_cadastro_produto_edt_categoria)
+                        listaCategorias.map { c -> c.name }
+
+                        val adapter = ArrayAdapter(
+                            this@CadastroProdutoActivity,
+                            R.layout.list_item,
+                            listaCategorias.map { c -> c.name.toString() })
+
+                        dCaategoria.setAdapter(adapter)
+
+                    }
                 }
-
-                withContext(Dispatchers.Main) {
-                    val dCaategoria = findViewById<AutoCompleteTextView>(R.id.activity_cadastro_produto_edt_categoria)
-                    listaCategorias.map { c -> c.name }
-
-                    val adapter = ArrayAdapter(
-                        this@CadastroProdutoActivity,
-                        R.layout.list_item,
-                        listaCategorias.map { c -> c.name.toString() })
-
-                    dCaategoria.setAdapter(adapter)
-
-                }
+            } catch (e: Throwable) {
+                AlertDialog.Builder(this@CadastroProdutoActivity).setTitle("Erro: " + e.message)
             }
         }
-
-
     }
 
     override fun onClick(view: View?) {
@@ -82,10 +88,19 @@ class CadastroProdutoActivity : BaseActivity() {
             botao_cancelar -> finish()
             botao_salvar -> SalvarProduto()
             botao_adicionar_img -> carregaImagem()
+            //botao_carregar -> tentaCarregarImg()
+        }
+    }
+
+    private fun tentaCarregarImg() {
+        if (!campo_url_img.text.isNullOrBlank()) {
+            image_carregada.load(campo_url_img.text.toString())
         }
     }
 
     private fun carregaImagem() {
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AlertDialog.Builder(this)
                 .setView(R.layout.activity_cadastro_produto_carrega_img_dialog)
@@ -99,8 +114,6 @@ class CadastroProdutoActivity : BaseActivity() {
                 }
                 .show()
         }
-
-
     }
 
     private fun SalvarProduto() {
@@ -122,19 +135,12 @@ class CadastroProdutoActivity : BaseActivity() {
             val service = ApiClient().produtoService
             val call = service.adiciona(produto)
             val response = call!!.execute()
-            if (response.isSuccessful ) {
-
-                Log.i("TESTESALVAR", "SalvarProduto: Salvouuuu ")
+            if (response.isSuccessful) {
+                AlertDialog.Builder(this@CadastroProdutoActivity)
+                    .setTitle("teste")
+                    .setMessage("Produto salvo com sucesso!")
                 finish()
-
             }
-
-
-
-
-
-
-
-            }
+        }
     }
 }

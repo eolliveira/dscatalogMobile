@@ -7,7 +7,7 @@
     android:clickable="false">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/activity_cadastro_produto_imagem_carregada"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
@@ -18,7 +18,7 @@
 
 
     <Button
-        android:id="@+id/activity_cadastro_produto_btn_salvar"
+        android:id="@+id/activity_cadastro_produto_btn_carregar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:clickable="true"

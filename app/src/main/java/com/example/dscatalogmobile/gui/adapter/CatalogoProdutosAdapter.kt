@@ -30,7 +30,7 @@ class CatalogoProdutosAdapter(
            preco.text = FormatCurrency.real(produto.price)
 
            val image = itemView.findViewById<ImageView>(R.id.activity_catalogo_produtos_img)
-           image.load(produto.imgUrl)
+           image.load (produto.imgUrl)
        }
    }
 

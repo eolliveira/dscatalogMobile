@@ -1,9 +1,13 @@
 package com.example.dscatalogmobile.gui.activity
 
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class CatalogoProdutosActivity : BaseActivity() {
 
@@ -24,9 +29,7 @@ class CatalogoProdutosActivity : BaseActivity() {
     private var listaProdutos: MutableList<Produto> = emptyList<Produto>().toMutableList()
     private val scope = CoroutineScope(Dispatchers.IO)
 
-
     private val botao_adicionar: FloatingActionButton by lazy { findViewById(R.id.activity_catalogo_produtos_fab_adicionar) }
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,36 +46,63 @@ class CatalogoProdutosActivity : BaseActivity() {
         )
         recyclerView.adapter = adapter
 
-        recyclerView.layoutManager = LinearLayoutManager(this )
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        scope.launch {
-            val service = ApiClient().produtoService
-            val call = service.findAll()
-            val response = call!!.execute()
+        try {
+            val progressDialog = ProgressDialog(this)
+                progressDialog.setMessage("Carregando produtos...")
 
-            if (response.isSuccessful) {
+            scope.launch {
+                withContext(Dispatchers.Main) {progressDialog.show()}
 
-                var list = response.body()?.getContent()?.map { p -> Produto(p) }
+                val service = ApiClient().produtoService
+                val call = service.findAll()
+                val response = call!!.execute()
 
-                listaProdutos.clear()
-                if (list != null) {
-                    listaProdutos.addAll(list)
+                withContext(Dispatchers.Main) { progressDialog.cancel() }
+
+                if (response.isSuccessful) {
+                    var list = response.body()?.getContent()?.map { p -> Produto(p) }
+
+                    listaProdutos.clear()
+                    if (list != null) {
+                        listaProdutos.addAll(list)
+                    }
+
+                    withContext(Dispatchers.Main) {
+                        adapter.atualiza(listaProdutos)
+                    }
+                } else {
+
+                    withContext(Dispatchers.Main){
+                        Toast.makeText(this@CatalogoProdutosActivity, "produtos não encontrados", Toast.LENGTH_LONG)
+                    }
+
+                    try {
+                        throw Exception(response.message())
+                    } catch (e: Exception){
+                        AlertDialog.Builder(
+                            this@CatalogoProdutosActivity)
+                            .setTitle("Error")
+                            .setMessage("error: " + e.message )
+                            .show()
+                    }
                 }
-
-                withContext(Dispatchers.Main) {
-                    adapter.atualiza(listaProdutos)
-                }
-
             }
 
+        } catch (e: Exception) {
+            AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage("error: " + e.message )
+                .show()
 
+            Log.i("TESTE", "onCreate: " + e.message)
         }
-
-
     }
 
+
     override fun onClick(view: View?) {
-        when(view){
+        when (view) {
             botao_adicionar -> startActivity(Intent(this, CadastroProdutoActivity::class.java))
         }
     }
