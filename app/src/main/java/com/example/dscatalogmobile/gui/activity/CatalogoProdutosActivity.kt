@@ -25,7 +25,11 @@ import java.lang.Exception
 
 class CatalogoProdutosActivity : BaseActivity() {
 
+    companion object {
+        private const val PRODUTO = "PRODUTO"
+    }
 
+    //private val PRODUTO: String = "PRODUTO"
     private var listaProdutos: MutableList<Produto> = emptyList<Produto>().toMutableList()
     private val scope = CoroutineScope(Dispatchers.IO)
 
@@ -46,8 +50,13 @@ class CatalogoProdutosActivity : BaseActivity() {
             listaProdutos,
             object : CatalogoProdutosAdapter.ItemOnClickListener {
                 override fun onItemClicked(view: View, position: Int, item: Produto) {
-
-                    Log.i("TESTEPRODUTO", "Produto: " + item.name)
+                    val i =
+                        Intent(
+                            this@CatalogoProdutosActivity,
+                            DetalheProdutoActivity::class.java
+                        )
+                    i.putExtra(PRODUTO, item.id)
+                    startActivity(i)
                 }
             })
 
@@ -80,7 +89,6 @@ class CatalogoProdutosActivity : BaseActivity() {
                         adapter.atualiza(listaProdutos)
                     }
                 } else {
-
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@CatalogoProdutosActivity,

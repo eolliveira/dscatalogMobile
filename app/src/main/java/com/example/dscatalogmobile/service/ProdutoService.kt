@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 
 interface ProdutoService {
@@ -15,5 +16,8 @@ interface ProdutoService {
 
     @POST("products")
     fun adiciona(@Body produto: Produto?): Call<Produto?>?
+
+    @GET("products/{produtoId}")
+    fun findById(@Path("produtoId") produtoId: Long): Call<Produto?>?
 
 }

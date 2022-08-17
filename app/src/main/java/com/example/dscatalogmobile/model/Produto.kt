@@ -17,10 +17,5 @@ class Produto(
         price = produto?.price,
         imgUrl = produto?.imgUrl,
         date = produto?.date
-    ) {
-
-
-    }
-
-
+    ) {}
 }
