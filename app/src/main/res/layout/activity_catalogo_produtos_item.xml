@@ -8,6 +8,7 @@
     android:layout_margin="8dp"
     xmlns:tools="http://schemas.android.com/tools"
     layout_height="match_parent"
+    android:clickable="true"
     layout_width="match_parent"
     app:cardElevation="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"

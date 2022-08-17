@@ -15,24 +15,25 @@ import java.text.NumberFormat
 import java.util.*
 
 class CatalogoProdutosAdapter(
-    val context: Context,
-    list: List<Produto>
+    private val context: Context,
+    list: List<Produto>,
+    private val itemOnClickListener: ItemOnClickListener
 ) : RecyclerView.Adapter<CatalogoProdutosAdapter.ViewHolder>() {
 
     private val produtos = list.toMutableList()
 
-   inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-       fun vincula(produto: Produto) {
-           val nome = itemView.findViewById<TextView>(R.id.activity_catalogo_produtos_nome)
-           nome.text = produto.name
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun vincula(produto: Produto) {
+            val nome = itemView.findViewById<TextView>(R.id.activity_catalogo_produtos_nome)
+            nome.text = produto.name
 
-           val preco = itemView.findViewById<TextView>(R.id.activity_catalogo_produtos_preco)
-           preco.text = FormatCurrency.real(produto.price)
+            val preco = itemView.findViewById<TextView>(R.id.activity_catalogo_produtos_preco)
+            preco.text = FormatCurrency.real(produto.price)
 
-           val image = itemView.findViewById<ImageView>(R.id.activity_catalogo_produtos_img)
-           image.load (produto.imgUrl)
-       }
-   }
+            val image = itemView.findViewById<ImageView>(R.id.activity_catalogo_produtos_img)
+            image.load(produto.imgUrl)
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -43,6 +44,18 @@ class CatalogoProdutosAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val produto = produtos[position]
         holder.vincula(produto)
+
+        holder.itemView.setOnClickListener { view ->
+            itemOnClickListener.onItemClicked(
+                view,
+                holder.adapterPosition,
+                produto
+            )
+        }
+    }
+
+    interface ItemOnClickListener {
+        fun onItemClicked(view: View, position: Int, item: Produto)
     }
 
     override fun getItemCount(): Int = produtos.size

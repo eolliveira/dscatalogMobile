@@ -42,18 +42,25 @@ class CatalogoProdutosActivity : BaseActivity() {
             findViewById<RecyclerView>(R.id.activity_catalogo_produtos_lista_produtos)
 
         val adapter = CatalogoProdutosAdapter(
-            this, listaProdutos
-        )
+            this,
+            listaProdutos,
+            object : CatalogoProdutosAdapter.ItemOnClickListener {
+                override fun onItemClicked(view: View, position: Int, item: Produto) {
+
+                    Log.i("TESTEPRODUTO", "Produto: " + item.name)
+                }
+            })
+
         recyclerView.adapter = adapter
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         try {
             val progressDialog = ProgressDialog(this)
-                progressDialog.setMessage("Carregando produtos...")
+            progressDialog.setMessage("Carregando produtos...")
 
             scope.launch {
-                withContext(Dispatchers.Main) {progressDialog.show()}
+                withContext(Dispatchers.Main) { progressDialog.show() }
 
                 val service = ApiClient().produtoService
                 val call = service.findAll()
@@ -74,17 +81,22 @@ class CatalogoProdutosActivity : BaseActivity() {
                     }
                 } else {
 
-                    withContext(Dispatchers.Main){
-                        Toast.makeText(this@CatalogoProdutosActivity, "produtos não encontrados", Toast.LENGTH_LONG)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            this@CatalogoProdutosActivity,
+                            "produtos não encontrados",
+                            Toast.LENGTH_LONG
+                        )
                     }
 
                     try {
                         throw Exception(response.message())
-                    } catch (e: Exception){
+                    } catch (e: Exception) {
                         AlertDialog.Builder(
-                            this@CatalogoProdutosActivity)
+                            this@CatalogoProdutosActivity
+                        )
                             .setTitle("Error")
-                            .setMessage("error: " + e.message )
+                            .setMessage("error: " + e.message)
                             .show()
                     }
                 }
@@ -93,7 +105,7 @@ class CatalogoProdutosActivity : BaseActivity() {
         } catch (e: Exception) {
             AlertDialog.Builder(this)
                 .setTitle("Error")
-                .setMessage("error: " + e.message )
+                .setMessage("error: " + e.message)
                 .show()
 
             Log.i("TESTE", "onCreate: " + e.message)
