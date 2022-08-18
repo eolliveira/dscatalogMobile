@@ -36,6 +36,8 @@ class CatalogoProdutosActivity : BaseActivity() {
     private val botao_adicionar: FloatingActionButton by lazy { findViewById(R.id.activity_catalogo_produtos_fab_adicionar) }
 
     @RequiresApi(Build.VERSION_CODES.O)
+
+    //implmentar busca de imagens de produtos
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_catalogo_produtos)
@@ -69,11 +71,13 @@ class CatalogoProdutosActivity : BaseActivity() {
             progressDialog.setMessage("Carregando produtos...")
 
             scope.launch {
-                withContext(Dispatchers.Main) { progressDialog.show() }
+                //withContext(Dispatchers.Main) { progressDialog.show() }
 
                 val service = ApiClient().produtoService
                 val call = service.findAll()
                 val response = call!!.execute()
+
+                ///
 
                 if (response.isSuccessful) {
                     var list = response.body()?.getContent()?.map { p -> Produto(p) }
@@ -83,7 +87,7 @@ class CatalogoProdutosActivity : BaseActivity() {
                         listaProdutos.addAll(list)
                     }
 
-                    withContext(Dispatchers.Main) { progressDialog.cancel() }
+                    //withContext(Dispatchers.Main) { progressDialog.cancel() }
 
                     withContext(Dispatchers.Main) {
                         adapter.atualiza(listaProdutos)

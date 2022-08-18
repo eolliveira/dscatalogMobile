@@ -20,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.awaitResponse
 import java.lang.Exception
 
 class DetalheProdutoActivity : BaseActivity() {
@@ -49,13 +50,15 @@ class DetalheProdutoActivity : BaseActivity() {
 
 
         val idProduto = intent.getLongExtra(PRODUTO, 0L)
-        Log.i(PRODUTO, "ProdutoId: " + idProduto)
         scope.launch {
             //withContext(Dispatchers.Main) { progressDialog.show() }
-
             val service = ApiClient().produtoService
             val call = service.findById(idProduto)
             val response = call!!.execute()
+
+
+            //testar nova implementação do coil, para carregar imagens
+
 
             //withContext(Dispatchers.Main) { progressDialog.cancel() }
 
@@ -67,7 +70,10 @@ class DetalheProdutoActivity : BaseActivity() {
                         campo_nome.text = produto.name
                         campo_preco.text = FormatCurrency.real(produto.price)
                         campo_descricao.text = produto.description
-                        imagem_produto.load(produto.imgUrl)
+                        val teste = imagem_produto.load(produto.imgUrl)
+                        if (!teste.isDisposed) {
+                            Log.i("TESTE", "onCreate: " + teste.dispose())
+                        }
                     }
                 }
 
@@ -77,7 +83,6 @@ class DetalheProdutoActivity : BaseActivity() {
 
 
     }
-
 
     override fun onClick(p0: View?) {
         TODO("Not yet implemented")
