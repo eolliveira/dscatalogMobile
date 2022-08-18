@@ -75,8 +75,6 @@ class CatalogoProdutosActivity : BaseActivity() {
                 val call = service.findAll()
                 val response = call!!.execute()
 
-                withContext(Dispatchers.Main) { progressDialog.cancel() }
-
                 if (response.isSuccessful) {
                     var list = response.body()?.getContent()?.map { p -> Produto(p) }
 
@@ -84,6 +82,8 @@ class CatalogoProdutosActivity : BaseActivity() {
                     if (list != null) {
                         listaProdutos.addAll(list)
                     }
+
+                    withContext(Dispatchers.Main) { progressDialog.cancel() }
 
                     withContext(Dispatchers.Main) {
                         adapter.atualiza(listaProdutos)

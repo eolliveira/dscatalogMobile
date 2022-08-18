@@ -3,13 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/layout/activity_catalogo_produtos.xml" value="0.32083333333333336" />
-        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/layout/activity_catalogo_produtos_item.xml" value="0.67" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/drawable/ic_fab_add.xml" value="0.1905" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/layout/activity_cadastro_produto.xml" value="0.25" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/layout/activity_cadastro_produto_carrega_img_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/layout/activity_catalogo_produtos.xml" value="0.25" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/layout/activity_catalogo_produtos_item.xml" value="0.5" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/layout/activity_detalhe_produto.xml" value="0.33" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/layout/list_item.xml" value="0.2" />
+        <entry key="..\:/Users/erick/AndroidStudioProjects/dscatalogMobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1905" />
         <entry key="..\:/workspace/android/dscatalogMobile/app/src/main/res/layout/activity_cadastro_produto.xml" value="0.24695121951219512" />
-        <entry key="..\:/workspace/android/dscatalogMobile/app/src/main/res/layout/activity_cadastro_produto_carrega_img_dialog.xml" value="0.20742753623188406" />
         <entry key="..\:/workspace/android/dscatalogMobile/app/src/main/res/layout/activity_catalogo_produtos.xml" value="0.22" />
-        <entry key="..\:/workspace/android/dscatalogMobile/app/src/main/res/layout/activity_catalogo_produtos_item.xml" value="0.48940269749518306" />
-        <entry key="..\:/workspace/android/dscatalogMobile/app/src/main/res/layout/activity_detalhe_produto.xml" value="0.22" />
+        <entry key="..\:/workspace/android/dscatalogMobile/app/src/main/res/layout/activity_catalogo_produtos_item.xml" value="0.5" />
         <entry key="..\:/workspace/android/dscatalogMobile/app/src/main/res/layout/list_item.xml" value="0.2" />
       </map>
     </option>
