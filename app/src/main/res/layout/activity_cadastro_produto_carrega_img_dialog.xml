@@ -24,10 +24,10 @@
         android:clickable="true"
         android:text="CARREGAR"
         app:icon="@drawable/ic_recarrega_img"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_cadastro_produto_imagem_carregada"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastro_produto_imagem_carregada" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/activity_cadastro_produto_carrega_img_dialog_il"
@@ -37,7 +37,7 @@
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_cadastro_produto_btn_salvar"
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastro_produto_btn_carregar"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText

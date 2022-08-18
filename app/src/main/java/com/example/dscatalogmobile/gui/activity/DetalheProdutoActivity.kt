@@ -5,6 +5,8 @@ import android.media.metrics.LogSessionId
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -38,9 +40,16 @@ class DetalheProdutoActivity : BaseActivity() {
         setContentView(R.layout.activity_detalhe_produto)
         setTitle("Detalhes do Produto")
 
+//        override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//            val inflater: MenuInflater = menuInflater
+//            inflater.inflate(R.menu.game_menu, menu)
+//            return true
+//        }
+//
+
+
         val idProduto = intent.getLongExtra(PRODUTO, 0L)
         Log.i(PRODUTO, "ProdutoId: " + idProduto)
-
         scope.launch {
             //withContext(Dispatchers.Main) { progressDialog.show() }
 

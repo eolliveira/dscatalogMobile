@@ -18,4 +18,5 @@ class Produto(
         imgUrl = produto?.imgUrl,
         date = produto?.date
     ) {}
+
 }

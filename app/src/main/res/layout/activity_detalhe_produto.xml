@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".gui.activity.DetalheProdutoActivity">
 
+<!--    <menu xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--        <item android:id="@+id/new_game"-->
+<!--            android:icon="@drawable/ic_add_fab"-->
+<!--            android:title="@string/bottom_sheet_behavior"-->
+<!--            android:showAsAction="ifRoom" />-->
+<!--    </menu>-->
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
